@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import type { QueryDocumentSnapshot, QuerySnapshot } from 'firebase-admin/firestore';
-import type { NextRequest} from 'next/server';
+import type { NextRequest } from 'next/server';
 
 import { db } from '@/lib/firebase/server';
 
