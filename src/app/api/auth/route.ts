@@ -1,12 +1,15 @@
-import { auth } from "firebase-admin";
-import { customInitApp } from "@/lib/firebase/server";
-import { cookies, headers } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { auth } from 'firebase-admin';
+import { cookies, headers } from 'next/headers';
+import { NextResponse } from 'next/server';
+
+import type { NextRequest} from 'next/server';
+
+import { customInitApp } from '@/lib/firebase/server';
 
 customInitApp();
 
 export async function GET(request: NextRequest) {
-  const session = cookies().get("session")?.value || "";
+  const session = cookies().get('session')?.value || '';
   if (!session) {
     return NextResponse.json({ isLogged: false }, { status: 401 });
   }
@@ -21,10 +24,10 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest, response: NextResponse) {
-  const authorization = headers().get("Authorization");
+  const authorization = headers().get('Authorization');
 
-  if (authorization?.startsWith("Bearer ")) {
-    const idToken = authorization.split("Bearer ")[1];
+  if (authorization?.startsWith('Bearer ')) {
+    const idToken = authorization.split('Bearer ')[1];
     const decodedToken = await auth().verifyIdToken(idToken);
 
     if (decodedToken) {
@@ -33,7 +36,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
         expiresIn,
       });
       const options = {
-        name: "session",
+        name: 'session',
         value: sessionCookie,
         maxAge: expiresIn,
         httpOnly: true,
@@ -48,7 +51,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
 }
 
 export async function DELETE(request: NextRequest, response: NextResponse) {
-  const token = cookies().get("session")?.value || "";
+  const token = cookies().get('session')?.value || '';
   if (!token) {
     return NextResponse.json({ isLogged: false }, { status: 401 });
   }
@@ -59,6 +62,6 @@ export async function DELETE(request: NextRequest, response: NextResponse) {
 export const invalidateLogin = async (token: string) => {
   const decodedClaims = await auth().verifySessionCookie(token, true);
   await auth().revokeRefreshTokens(decodedClaims.uid);
-  cookies().delete("session");
+  cookies().delete('session');
   return;
 };

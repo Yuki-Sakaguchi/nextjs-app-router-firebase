@@ -1,10 +1,11 @@
-import { cookies } from "next/headers";
-import { auth, customInitApp } from "@/lib/firebase/server";
+import { cookies } from 'next/headers';
+
+import { auth, customInitApp } from '@/lib/firebase/server';
 
 customInitApp();
 
 export async function getUser() {
-  const session = cookies().get("session")?.value;
+  const session = cookies().get('session')?.value;
   if (!session) {
     return null;
   }
