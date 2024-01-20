@@ -11,17 +11,8 @@ Firebase は Cookie でセッションを保持する
 - https://github.com/alan2207/bulletproof-react/tree/master
 
 ## 対応予定
-- hasky などで Lint などを強制させる
-  - https://github.com/Yuki-Sakaguchi/node-ts
-  - https://github.com/Yuki-Sakaguchi/nextjs-hasura-supabase-todo-app
-- Lint で import の順番やクォーテーションなどを制御
-  - Biome でできたらそれがいいかも？
-    - https://biomejs.dev/
-    - https://zenn.dev/cybozu_frontend/articles/biome-eslint-compatibility
-    - https://biomejs.dev/recipes/git-hooks/#husky
 - デザインを整える
   - https://github.com/Yuki-Sakaguchi/nextjs-session-password
-  - 
 - サインインした時にリダイレクトまで時間がかかるのでそれを調整
 - テストを書く
 - Zod と withConverter によるスキーマ管理とバリデーション
