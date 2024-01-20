@@ -1,8 +1,12 @@
-'use client';
+"use client";
 
-import { useSignIn } from '@/features/auth/hooks/useSignIn';
+import { useSignIn } from "@/features/auth/hooks/useSignIn";
 
 export default function SignInButton() {
   const { signIn } = useSignIn();
-  return <button onClick={() => signIn()}>SignIn</button>;
+  return (
+    <button type="button" onClick={() => signIn()}>
+      SignIn
+    </button>
+  );
 }

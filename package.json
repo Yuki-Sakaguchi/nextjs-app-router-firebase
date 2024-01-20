@@ -6,13 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --dir src",
-    "lint:fix": "next lint --dir src --fix",
-    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'",
-    "fix": "npm run format && npm run lint:fix",
-    "gen-types": "DOTENV_CONFIG_PATH='.env.local' graphql-codegen --require dotenv/config",
+    "lint": "biome lint --apply ./src",
+    "format": "biome format --write ./src",
+    "check": "biome check --apply ./src",
     "lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "postinstall": "husky install"
   },
   "dependencies": {
     "firebase": "^10.7.1",
@@ -23,22 +21,30 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.5.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "autoprefixer": "^10.0.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.4",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.29.1",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.0",
     "postcss": "^8",
-    "prettier": "^3.2.4",
-    "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "**.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+      "biome check --files-ignore-unknown=true",
+      "biome check --apply --no-errors-on-unmatched",
+      "biome check --apply --organize-imports-enabled=false --no-errors-on-unmatched",
+      "biome check --apply-unsafe --no-errors-on-unmatched",
+      "biome format --write --no-errors-on-unmatched",
+      "biome lint --apply --no-errors-on-unmatched"
+    ],
+    "*": [
+      "biome check --no-errors-on-unmatched --files-ignore-unknown=true"
+    ]
   }
 }

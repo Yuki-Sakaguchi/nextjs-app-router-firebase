@@ -1,7 +1,7 @@
-import LogoutButton from '@/features/auth/components/LogoutButton';
-import SignInButton from '@/features/auth/components/SignInButton';
-import UserData from '@/features/auth/components/UserData';
-import TodoList from '@/features/todo/components/TodoList';
+import LogoutButton from "@/features/auth/components/LogoutButton";
+import SignInButton from "@/features/auth/components/SignInButton";
+import UserData from "@/features/auth/components/UserData";
+import TodoList from "@/features/todo/components/TodoList";
 
 export default async function Home() {
   return (
