@@ -1,7 +1,19 @@
-機能ごとに処理をまとめる  
+# 機能ごとに処理をまとめる  
 
-- api
-- components
-- hooks
-- test
-- types
+- features
+  - todo 
+    - data
+      - api
+      - datasource
+    - domain
+      - usecase
+      - model
+    - view
+      - components
+      - hooks
+    - types
+    - test
+- app
+  - api
+    - todo
+      - router
