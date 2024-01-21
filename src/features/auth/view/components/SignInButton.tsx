@@ -1,6 +1,6 @@
 "use client";
 
-import { useSignIn } from "@/features/auth/hooks/useSignIn";
+import { useSignIn } from "@/features/auth/view/hooks/useSignIn";
 
 export default function SignInButton() {
   const { signIn } = useSignIn();

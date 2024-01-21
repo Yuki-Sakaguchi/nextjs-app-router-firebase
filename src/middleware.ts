@@ -4,7 +4,6 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest, response: NextResponse) {
   const session = request.cookies.get("session");
-
   if (!session) {
     return NextResponse.redirect(new URL("/", request.url));
   }

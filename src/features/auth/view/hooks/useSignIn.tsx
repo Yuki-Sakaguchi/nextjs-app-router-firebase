@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { getRedirectResult, signInWithRedirect } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
-import { postSignIn } from "@/features/auth/api/signIn";
+import { postSignIn } from "@/features/auth/domain/usecase/signIn";
 import { auth, provider } from "@/lib/firebase/client";
 
 export function useSignIn() {

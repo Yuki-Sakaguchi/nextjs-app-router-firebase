@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { logout } from "@/features/auth/api/logout";
+import { logout } from "@/features/auth/domain/usecase/logout";
 
 export default async function LogoutButton() {
   async function handleAction() {

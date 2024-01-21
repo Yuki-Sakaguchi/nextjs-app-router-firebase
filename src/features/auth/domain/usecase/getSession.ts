@@ -4,7 +4,7 @@ import { auth, customInitApp } from "@/lib/firebase/server";
 
 customInitApp();
 
-export async function getUser() {
+export async function getSession() {
   const session = cookies().get("session")?.value;
   if (!session) {
     return null;
