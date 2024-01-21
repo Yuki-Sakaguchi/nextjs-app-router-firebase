@@ -6,6 +6,8 @@ App Router の機能を学びながらいい感じのディレクトリ構造の
 ディレクトリ構造としては features で機能ごとにまとめて、汎用的なものをそれぞれ app と同列に配置するイメージ  
 Firebase は Cookie でセッションを保持する
 
+Zod でスキーマとバリデーションを一緒に管理
+
 ## 参考
 - https://nextjs.org/docs/app/building-your-application/routing/colocation
 - https://github.com/alan2207/bulletproof-react/tree/master
@@ -15,10 +17,6 @@ Firebase は Cookie でセッションを保持する
   - https://github.com/Yuki-Sakaguchi/nextjs-session-password
 - サインインした時にリダイレクトまで時間がかかるのでそれを調整
 - テストを書く
-- Zod と withConverter によるスキーマ管理とバリデーション
-  - https://tech.gamewith.co.jp/entry/2023/12/05/115148
-  - https://blog.tawa.me/entry/firestore-type
-  - https://qiita.com/FAL-coffee/items/3496036b7acbb3493bc1
 - App Router の機能としてある特定のファイル名のものを作る
   - https://nextjs.org/docs/getting-started/project-structure
 - キーボード入力の実装
