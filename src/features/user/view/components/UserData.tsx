@@ -1,4 +1,4 @@
-import { getUser } from "../../domain/usecase/getUser";
+import { getUser } from "../../domain/usecase/server";
 
 export default async function UserData() {
   const user = await getUser();

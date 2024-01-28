@@ -1,3 +1,5 @@
+import "client-only";
+
 import Cookies from "js-cookie";
 import { Theme } from "../../types";
 

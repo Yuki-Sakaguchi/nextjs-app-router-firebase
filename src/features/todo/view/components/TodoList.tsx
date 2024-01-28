@@ -1,4 +1,4 @@
-import { getTodos } from "@/features/todo/domain/usecase/getTodos";
+import { getTodos } from "@/features/todo/domain/usecase/server";
 import { format } from "date-fns";
 
 export default async function TodoList() {

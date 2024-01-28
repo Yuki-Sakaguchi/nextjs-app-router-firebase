@@ -1,3 +1,5 @@
+import "server-only";
+
 import { Todo } from "@/features/todo/domain/model/Todo";
 import { getApiBase } from "@/utils/fetch";
 

@@ -1,3 +1,5 @@
+import "server-only";
+
 import { customInitApp } from "@/lib/firebase/server";
 import { getApiBase } from "@/utils/fetch";
 import { cookies } from "next/headers";
