@@ -20,6 +20,7 @@ Zod でスキーマとバリデーションを一緒に管理
 - テストを書く
 - App Router の機能としてある特定のファイル名のものを作る
   - https://nextjs.org/docs/getting-started/project-structure
+- fetchのキャッシュ戦略を考える
 - キーボード入力の実装
   - https://github.com/github/hotkey
 - エディターの実装

@@ -16,3 +16,12 @@ export const app =
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const provider = new GoogleAuthProvider();
+
+export function initializeAuthenticatedApp(uid: string) {
+  const random = Math.random().toString(36).split(".")[1];
+  const appName = `authenticated-context:${uid}:${random}`;
+
+  const app = initializeApp(firebaseConfig, appName);
+
+  return app;
+}

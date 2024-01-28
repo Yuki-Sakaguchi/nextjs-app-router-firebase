@@ -11,6 +11,7 @@ export async function getUser() {
   const apiBase = getApiBase();
   const session = cookies().get("session")?.value || "";
   const response = await fetch(`${apiBase}/api/user`, {
+    cache: "no-cache",
     headers: {
       Cookie: `session=${session}`,
     },

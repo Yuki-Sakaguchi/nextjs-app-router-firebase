@@ -5,11 +5,12 @@ import TodoList from "@/features/todo/view/components/TodoList";
 import { getUser } from "@/features/user/domain/usecase/server";
 import UserData from "@/features/user/view/components/UserData";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default async function Home() {
   const user = await getUser();
   return (
-    <div>
+    <Suspense fallback={<div>loading</div>}>
       <UserData />
       <TodoList />
       {user ? (
@@ -23,6 +24,6 @@ export default async function Home() {
         <SignInButton />
       )}
       <Theme />
-    </div>
+    </Suspense>
   );
 }
