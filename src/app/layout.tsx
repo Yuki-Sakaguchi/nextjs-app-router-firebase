@@ -1,3 +1,4 @@
+import { getTheme } from "@/features/theme/domain/usecase/server";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -9,8 +10,9 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: { children: React.ReactNode }) {
+  const theme = getTheme();
   return (
-    <html lang="ja">
+    <html lang="ja" data-theme={theme}>
       <body>{children}</body>
     </html>
   );
