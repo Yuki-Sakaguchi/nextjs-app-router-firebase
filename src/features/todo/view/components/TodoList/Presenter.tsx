@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { type ChangeEvent, useState } from "react";
 import { Todo } from "../../../domain/model/Todo";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 function TodoListItem({ todo }: { todo: Todo }) {
   const [checked, setChecked] = useState(todo.enabled);
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setChecked(event.currentTarget.checked);
   }
   return (

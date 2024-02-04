@@ -1,6 +1,7 @@
 import "server-only";
 
 import { Todo } from "@/features/todo/domain/model/Todo";
+import { isEmptyObject } from "@/utils/check";
 import { getApiBase } from "@/utils/fetch";
 
 export async function getTodos(): Promise<Todo[]> {
@@ -9,6 +10,9 @@ export async function getTodos(): Promise<Todo[]> {
   if (!response.ok) {
     throw new Error("error");
   }
-  const data: Todo[] = await response.json();
+  const data = await response.json();
+  if (isEmptyObject(data)) {
+    return [];
+  }
   return data;
 }
