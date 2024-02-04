@@ -14,5 +14,5 @@ export async function getTodos(): Promise<Todo[]> {
   if (isEmptyObject(data)) {
     return [];
   }
-  return data;
+  return data as Todo[];
 }
