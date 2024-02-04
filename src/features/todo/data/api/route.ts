@@ -37,6 +37,8 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   const updateData = await request.json();
-  db.collection(COLLECTION_NAME).doc(updateData.id).update(updateData);
+  db.collection(COLLECTION_NAME).doc(updateData.id).update({
+    enabled: updateData.enabled,
+  });
   return NextResponse.json(updateData);
 }

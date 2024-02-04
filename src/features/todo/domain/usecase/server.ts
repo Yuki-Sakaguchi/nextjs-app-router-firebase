@@ -16,3 +16,16 @@ export async function getTodos(): Promise<Todo[]> {
   }
   return data as Todo[];
 }
+
+export async function patchTodo(todo: Todo): Promise<Todo> {
+  const apiBase = getApiBase();
+  const response = await fetch(`${apiBase}/api/todo`, {
+    method: "PATCH",
+    body: JSON.stringify(todo),
+  });
+  if (!response.ok) {
+    throw new Error("error");
+  }
+  const data = await response.json();
+  return data as Todo;
+}
