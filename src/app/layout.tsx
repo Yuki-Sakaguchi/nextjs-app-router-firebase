@@ -1,4 +1,4 @@
-import { getSession } from "@/features/auth/domain/usecase/server";
+import SideMenu from "@/components/layouts/SideMenu";
 import { LoadingProvider } from "@/features/loading/view/provider";
 import { getTheme } from "@/features/theme/domain/usecase/server";
 import type { Metadata } from "next";
@@ -14,13 +14,16 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: { children: React.ReactNode }) {
-  const user = await getSession();
-  console.log("layout currentUser", user);
   const theme = getTheme();
   return (
     <html lang="ja" data-theme={theme}>
       <body>
-        <LoadingProvider>{children}</LoadingProvider>
+        <LoadingProvider>
+          <div className="flex min-h-screen">
+            <SideMenu />
+            <main className=" flex-1">{children}</main>
+          </div>
+        </LoadingProvider>
       </body>
     </html>
   );
