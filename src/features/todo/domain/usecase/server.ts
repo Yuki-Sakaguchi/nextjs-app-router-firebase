@@ -6,7 +6,9 @@ import { getApiBase } from "@/utils/fetch";
 
 export async function getTodos(): Promise<Todo[]> {
   const apiBase = getApiBase();
-  const response = await fetch(`${apiBase}/api/todo`);
+  const response = await fetch(`${apiBase}/api/todo`, {
+    cache: "no-store",
+  });
   if (!response.ok) {
     throw new Error("error");
   }

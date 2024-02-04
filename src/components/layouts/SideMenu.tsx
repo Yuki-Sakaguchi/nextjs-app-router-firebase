@@ -1,12 +1,10 @@
 import LogoutButton from "@/features/auth/view/components/LogoutButton";
 import SignInButton from "@/features/auth/view/components/SignInButton";
-import { getTodos } from "@/features/todo/domain/usecase/server";
 import { getUser } from "@/features/user/domain/usecase/server";
 import Link from "next/link";
 
 export default async function SideMenu() {
   const user = await getUser();
-  const todos = await getTodos();
   return (
     <div className="w-[200px] bg-neutral text-neutral-content">
       <div className="py-8">
