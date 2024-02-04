@@ -34,7 +34,15 @@ export default async function SideMenu() {
         <div className="mt-5">
           <ul className="menu bg-base-content rounded-box">
             <li>
-              <Link className="hover:bg-slate-800" href="/tasks">
+              <Link className="hover:bg-slate-800 focus:text-white" href="/">
+                HOME
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:bg-slate-800 focus:text-white"
+                href="/tasks"
+              >
                 タスク一覧
               </Link>
             </li>

@@ -1,5 +1,4 @@
 import SideMenu from "@/components/layouts/SideMenu";
-import { LoadingProvider } from "@/features/loading/view/provider";
 import { getTheme } from "@/features/theme/domain/usecase/server";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -18,12 +17,10 @@ export default async function RootLayout({
   return (
     <html lang="ja" data-theme={theme}>
       <body>
-        <LoadingProvider>
-          <div className="flex min-h-screen">
-            <SideMenu />
-            <main className=" flex-1">{children}</main>
-          </div>
-        </LoadingProvider>
+        <div className="flex min-h-screen">
+          <SideMenu />
+          <main className="flex-1 p-8">{children}</main>
+        </div>
       </body>
     </html>
   );
