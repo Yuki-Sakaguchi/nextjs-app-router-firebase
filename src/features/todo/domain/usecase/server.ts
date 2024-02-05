@@ -1,5 +1,3 @@
-import "server-only";
-
 import { Todo } from "@/features/todo/domain/model/Todo";
 import { isEmptyObject } from "@/utils/check";
 import { getApiBase } from "@/utils/fetch";

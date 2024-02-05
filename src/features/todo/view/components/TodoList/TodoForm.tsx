@@ -1,30 +1,27 @@
-import { Todo } from "@/features/todo/domain/model/Todo";
-import { patchTodo } from "@/features/todo/domain/usecase/server";
+"use client";
 
-export default async function TodoForm({ todo }: { todo: Todo }) {
-  async function handleAction(formData: FormData) {
-    "use server";
-    const response = await patchTodo({
-      ...todo,
-      enabled: Boolean(formData.get("enabled") as string),
-    });
-  }
+import { Todo } from "@/features/todo/domain/model/Todo";
+
+type Props = {
+  todo: Todo;
+  toggleEnabled: (todo: Todo) => Promise<void>;
+};
+
+export default async function TodoForm({ todo, toggleEnabled }: Props) {
   return (
     <li>
-      <form action={handleAction}>
-        <div className="flex gap-2">
-          <label>
-            <input
-              type="checkbox"
-              name="enabled"
-              className="checkbox"
-              defaultChecked={todo.enabled}
-            />
-          </label>
-          <div>{todo.title}</div>
-          <button type="submit">反映</button>
-        </div>
-      </form>
+      <div className="flex gap-2">
+        <label>
+          <input
+            type="checkbox"
+            name="enabled"
+            className="checkbox"
+            defaultChecked={todo.enabled}
+            onChange={() => toggleEnabled(todo)}
+          />
+        </label>
+        <div>{todo.title}</div>
+      </div>
     </li>
   );
 }
