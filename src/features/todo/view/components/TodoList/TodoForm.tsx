@@ -21,6 +21,7 @@ export default async function TodoForm({ todo, toggleEnabled }: Props) {
           />
         </label>
         <div>{todo.title}</div>
+        <time>{todo.createdAt.toString()}</time>
       </div>
     </li>
   );

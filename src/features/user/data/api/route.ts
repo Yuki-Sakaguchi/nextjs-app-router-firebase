@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { userRawConverter } from "../datasource/UserRaw";
 
 import { customInitApp } from "@/lib/firebase/server";
+import { User } from "../../domain/model/User";
 
 customInitApp();
 
@@ -23,8 +24,8 @@ export async function GET(request: NextRequest) {
 
   const snapshot = await db
     .collection(COLLECTION_NAME)
-    .withConverter(userRawConverter)
     .doc(decodedClaims.uid)
+    .withConverter(userRawConverter)
     .get();
 
   if (!snapshot.exists) {
@@ -36,9 +37,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ isLogged: false }, { status: 404 });
   }
 
-  return NextResponse.json({
+  const user: User = {
     ...userRaw,
-    createdAt: new Date(userRaw.createdAt.seconds * 1000),
-    id: snapshot.id,
-  });
+    createdAt: userRaw.createdAt as Date,
+    uid: snapshot.id,
+  };
+  return NextResponse.json(user);
 }

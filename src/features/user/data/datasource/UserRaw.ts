@@ -1,4 +1,7 @@
-import { converter, firestoreTimestampSchema } from "@/lib/firebase/converter";
+import {
+  converter,
+  firestoreTimestampOrDateSchema,
+} from "@/lib/firebase/converter";
 import { z } from "zod";
 
 export const userRawSchema = z.object({
@@ -6,7 +9,7 @@ export const userRawSchema = z.object({
   lastName: z.string(),
   avater: z.string(),
   enabled: z.boolean(),
-  createdAt: firestoreTimestampSchema,
+  createdAt: firestoreTimestampOrDateSchema,
 });
 
 export type UserRaw = z.infer<typeof userRawSchema>;
