@@ -1,6 +1,8 @@
 import SideMenu from "@/components/layouts/SideMenu";
 import { getTheme } from "@/features/theme/domain/usecase/server";
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +23,7 @@ export default async function RootLayout({
           <SideMenu />
           <main className="flex-1 p-8">{children}</main>
         </div>
+        <ToastContainer />
       </body>
     </html>
   );
