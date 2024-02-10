@@ -5,9 +5,13 @@ import { Todo } from "../model/Todo";
 import { patchTodo } from "./server";
 
 export async function toggleEnabled(todo: Todo) {
-  const response = await patchTodo({
-    ...todo,
-    enabled: !todo.enabled,
-  });
+  try {
+    const response = await patchTodo({
+      ...todo,
+      enabled: !todo.enabled,
+    });
+  } catch (e) {
+    throw new Error("エラーが発生しました");
+  }
   revalidatePath("/tasks");
 }
