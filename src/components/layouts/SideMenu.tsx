@@ -1,28 +1,41 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import LogoutButton from "@/features/auth/view/components/LogoutButton";
 import SignInButton from "@/features/auth/view/components/SignInButton";
 import { getUser } from "@/features/user/domain/usecase/server";
 import Link from "next/link";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 export default async function SideMenu() {
   const user = await getUser();
   return (
-    <div className="w-[200px] bg-neutral text-neutral-content">
+    <div className="w-full h-full bg-primary text-primary-foreground">
       <div className="py-8">
         {user ? (
           <div className="flex justify-center items-center flex-col">
-            <div className="dropdown dropdown-right">
-              <div tabIndex={0} role="button" className="avatar">
-                <div className="w-20 rounded-full">
-                  <img src={user.avater} alt="" />
-                </div>
-              </div>
-              <ul className="ml-4 dropdown-content z-[1] menu p-2 shadow bg-base-100 text-neutral rounded-box w-52">
-                <li>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Avatar className="w-14 h-14">
+                  <AvatarImage src={user.avater} />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>
+                  {/* @ts-expect-error Server Component */}
                   <LogoutButton />
-                </li>
-              </ul>
-            </div>
-            <p>{user.lastName}</p>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         ) : (
           <div className="flex justify-center">
@@ -30,17 +43,14 @@ export default async function SideMenu() {
           </div>
         )}
         <div className="mt-5">
-          <ul className="menu bg-base-content rounded-box">
+          <ul className="mt-4 px-6 flex flex-col gap-2">
             <li>
-              <Link className="hover:bg-slate-800 focus:text-white" href="/">
+              <Link className="" href="/">
                 HOME
               </Link>
             </li>
             <li>
-              <Link
-                className="hover:bg-slate-800 focus:text-white"
-                href="/todos"
-              >
+              <Link className="" href="/todos">
                 タスク一覧
               </Link>
             </li>

@@ -10,6 +10,7 @@ export default async function Todos() {
         <AddButton addTodo={addTodo} />
       </div>
       <div className="mt-8">
+        {/* @ts-expect-error Server Component */}
         <TodoList />
       </div>
     </div>

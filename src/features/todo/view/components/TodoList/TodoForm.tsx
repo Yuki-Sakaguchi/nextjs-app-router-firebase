@@ -1,5 +1,6 @@
 "use client";
 
+import { Checkbox } from "@/components/ui/checkbox";
 import { Todo } from "@/features/todo/domain/model/Todo";
 import { formatYYYYMMDD } from "@/lib/date";
 import toast from "@/lib/toast";
@@ -17,6 +18,7 @@ export default async function TodoForm({
   removeTodo,
 }: Props) {
   async function handleAction(todo: Todo) {
+    console.log("change", todo);
     try {
       await toggleEnabled(todo);
       toast.success("タスクの編集に成功しました");
@@ -37,22 +39,16 @@ export default async function TodoForm({
     }
   }
   return (
-    <li className="card border">
-      <div className="card-body">
+    <li className="border py-2 px-4 rounded-md">
+      <div>
         <div className="flex items-center gap-4">
-          <label className="block">
-            <input
-              type="checkbox"
-              name="enabled"
-              className="checkbox"
-              defaultChecked={todo.enabled}
-              onChange={async () => handleAction(todo)}
-            />
-          </label>
+          <Checkbox
+            name="enabled"
+            defaultChecked={todo.enabled}
+            onCheckedChange={async () => handleAction(todo)}
+          />
           <div className="flex-1">
-            <time className="badge badge-sm text-xs">
-              {formatYYYYMMDD(todo.createdAt)}
-            </time>
+            <time className="text-xs">{formatYYYYMMDD(todo.createdAt)}</time>
             <h3 className="text-xl font-bold">{todo.title}</h3>
           </div>
           <div>
