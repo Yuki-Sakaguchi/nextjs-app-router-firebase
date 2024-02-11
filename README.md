@@ -14,23 +14,21 @@ Zod でスキーマとバリデーションを一緒に管理
 - https://github.com/alan2207/bulletproof-react/tree/master
 
 ## 対応予定
-- デザインを整える
-  - https://github.com/Yuki-Sakaguchi/nextjs-session-password
-- サインインした時にリダイレクトまで時間がかかるのでそれを調整
 - テストを書く
 - App Router の機能としてある特定のファイル名のものを作る
   - https://nextjs.org/docs/getting-started/project-structure
 - fetchのキャッシュ戦略を考える
-- キーボード入力の実装
-  - https://github.com/github/hotkey
 - エディターの実装
   - https://tiptap.dev/
-- モーダルの実装
-  - https://github.com/reactjs/react-modal
 - ドラッグアンドドロップの実装
   - https://zenn.dev/makotoishida/articles/868e195fc42f5e
 - グラフの表示
   - https://zenn.dev/leftletter/articles/cdf3d30b74718c
+- サイドメニューの幅を可変にする
+- TODO一覧をログインしていないと表示できないようにする（今はエラーになる）
+  - ログインを促すページにする
+- fetchのラッパー関数
+  - cookie を常に渡し続けるような形にしたい
 
 
 ## 調べたいこと
