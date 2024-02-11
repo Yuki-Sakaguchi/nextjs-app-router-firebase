@@ -2,6 +2,7 @@
 
 import toast from "@/lib/toast";
 import { useState } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
 import Modal from "react-modal";
 
 Modal.setAppElement("body");
@@ -12,9 +13,12 @@ type Props = {
 
 export default function AddButton({ addTodo }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  useHotkeys("q", () => setIsOpen(true));
+
   function handleClick() {
     setIsOpen(!isOpen);
   }
+
   async function handleAction(formData: FormData) {
     try {
       await addTodo(formData);
@@ -26,6 +30,7 @@ export default function AddButton({ addTodo }: Props) {
       }
     }
   }
+
   return (
     <>
       <button
@@ -37,7 +42,7 @@ export default function AddButton({ addTodo }: Props) {
       </button>
       <Modal
         isOpen={isOpen}
-        overlayClassName="absolute inset-0 bg-opacity-75 bg-white z-50"
+        overlayClassName="absolute inset-0 bg-opacity-75 bg-black z-50"
         shouldCloseOnOverlayClick={true}
         onRequestClose={() => setIsOpen(false)}
       >
@@ -51,14 +56,15 @@ export default function AddButton({ addTodo }: Props) {
                   type="text"
                   name="title"
                   placeholder="タイトル"
-                  className="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full max-w-xs mt-2"
+                  ref={(ref) => ref?.focus()}
                 />
               </div>
               <div className="flex flex-col">
                 <label>詳細</label>
                 <textarea
                   name="body"
-                  className="textarea textarea-bordered"
+                  className="textarea textarea-bordered mt-2"
                   placeholder="Bio"
                 />
               </div>
