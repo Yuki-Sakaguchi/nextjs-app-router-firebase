@@ -45,3 +45,14 @@ export async function patchTodo(todo: Todo): Promise<Todo> {
   const data = await response.json();
   return data as Todo;
 }
+
+export async function deleteTodo(id: string): Promise<void> {
+  const apibase = getApiBase();
+  const response = await fetch(`${apibase}/api/todo`, {
+    method: "DELETE",
+    body: JSON.stringify(id),
+  });
+  if (!response.ok) {
+    throw new Error("error");
+  }
+}

@@ -1,1 +1,1 @@
-export { GET, POST, PATCH } from "@/features/todo/data/api/route";
+export { GET, POST, PATCH, DELETE } from "@/features/todo/data/api/route";

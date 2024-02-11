@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { Todo } from "../model/Todo";
-import { patchTodo, postTodo } from "./server";
+import { deleteTodo, patchTodo, postTodo } from "./server";
 
 export async function toggleEnabled(todo: Todo) {
   try {
@@ -27,6 +27,18 @@ export async function addTodo(formData: FormData) {
       title,
       body,
     });
+  } catch (e) {
+    throw new Error("エラーが発生しました");
+  }
+  revalidatePath("/todos");
+}
+
+export async function removeTodo(id: string) {
+  if (id === "") {
+    throw new Error("タスクIDを指定してください");
+  }
+  try {
+    await deleteTodo(id);
   } catch (e) {
     throw new Error("エラーが発生しました");
   }

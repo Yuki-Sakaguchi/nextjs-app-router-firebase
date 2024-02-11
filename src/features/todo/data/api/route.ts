@@ -56,3 +56,9 @@ export async function PATCH(request: NextRequest) {
     .update(newTodo);
   return NextResponse.json(updateData);
 }
+
+export async function DELETE(request: NextRequest) {
+  const deleteData = await request.json();
+  const result = await db.collection(COLLECTION_NAME).doc(deleteData).delete();
+  return NextResponse.json(result);
+}
