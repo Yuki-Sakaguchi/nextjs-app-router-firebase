@@ -17,6 +17,22 @@ export async function getTodos(): Promise<Todo[]> {
   return data as Todo[];
 }
 
+export async function postTodo(params: {
+  title: string;
+  body: string;
+}): Promise<Todo> {
+  const apiBase = getApiBase();
+  const response = await fetch(`${apiBase}/api/todo`, {
+    method: "POST",
+    body: JSON.stringify(params),
+  });
+  if (!response.ok) {
+    throw new Error("error");
+  }
+  const data = await response.json();
+  return data as Todo;
+}
+
 export async function patchTodo(todo: Todo): Promise<Todo> {
   const apiBase = getApiBase();
   const response = await fetch(`${apiBase}/api/todo`, {

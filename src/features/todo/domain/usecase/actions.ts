@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { Todo } from "../model/Todo";
-import { patchTodo } from "./server";
+import { patchTodo, postTodo } from "./server";
 
 export async function toggleEnabled(todo: Todo) {
   try {
@@ -13,5 +13,22 @@ export async function toggleEnabled(todo: Todo) {
   } catch (e) {
     throw new Error("エラーが発生しました");
   }
-  revalidatePath("/tasks");
+  revalidatePath("/todos");
+}
+
+export async function addTodo(formData: FormData) {
+  const title = formData.get("title") as string;
+  const body = formData.get("body") as string;
+  if (title === "") {
+    throw new Error("タイトルを入力してください");
+  }
+  try {
+    const response = await postTodo({
+      title,
+      body,
+    });
+  } catch (e) {
+    throw new Error("エラーが発生しました");
+  }
+  revalidatePath("/todos");
 }

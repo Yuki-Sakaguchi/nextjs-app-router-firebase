@@ -39,7 +39,7 @@ export default async function SideMenu() {
             <li>
               <Link
                 className="hover:bg-slate-800 focus:text-white"
-                href="/tasks"
+                href="/todos"
               >
                 タスク一覧
               </Link>

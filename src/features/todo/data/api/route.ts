@@ -27,8 +27,17 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const insertData = await request.json();
-  const docRef = await db.collection(COLLECTION_NAME).add(insertData);
-  return NextResponse.json({ ...insertData, id: docRef.id });
+  const newTodo: Omit<Todo, "id"> = {
+    title: insertData.title,
+    body: insertData.body,
+    createdAt: new Date(),
+    enabled: false,
+  };
+  await db
+    .collection(COLLECTION_NAME)
+    .withConverter(todoRawConverter)
+    .add(newTodo);
+  return NextResponse.json(newTodo);
 }
 
 export async function PATCH(request: NextRequest) {
@@ -40,7 +49,8 @@ export async function PATCH(request: NextRequest) {
     createdAt: new Date(updateData.createdAt),
     enabled: updateData.enabled,
   };
-  db.collection(COLLECTION_NAME)
+  await db
+    .collection(COLLECTION_NAME)
     .doc(id)
     .withConverter(todoRawConverter)
     .update(newTodo);
