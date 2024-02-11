@@ -11,15 +11,15 @@ customInitApp();
 
 const COLLECTION_NAME = "user";
 
-export async function GET(request: NextRequest) {
+export async function getUser(): Promise<User | undefined> {
   const session = cookies().get("session")?.value || "";
   if (!session) {
-    return NextResponse.json({ isLogged: false }, { status: 401 });
+    return;
   }
 
   const decodedClaims = await auth().verifySessionCookie(session, true);
   if (!decodedClaims) {
-    return NextResponse.json({ isLogged: false }, { status: 401 });
+    return;
   }
 
   const snapshot = await db
@@ -29,12 +29,12 @@ export async function GET(request: NextRequest) {
     .get();
 
   if (!snapshot.exists) {
-    return NextResponse.json({ isLogged: false }, { status: 404 });
+    return;
   }
 
   const userRaw = snapshot.data();
   if (!userRaw) {
-    return NextResponse.json({ isLogged: false }, { status: 404 });
+    return;
   }
 
   const user: User = {
@@ -42,5 +42,11 @@ export async function GET(request: NextRequest) {
     createdAt: userRaw.createdAt as Date,
     uid: snapshot.id,
   };
+
+  return user;
+}
+
+export async function GET(request: NextRequest) {
+  const user = await getUser();
   return NextResponse.json(user);
 }

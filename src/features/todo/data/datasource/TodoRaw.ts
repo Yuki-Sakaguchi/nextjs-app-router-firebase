@@ -8,6 +8,7 @@ export const todoRawSchema = z.object({
   title: z.string(),
   body: z.string(),
   enabled: z.boolean(),
+  userId: z.string(),
   createdAt: firestoreTimestampOrDateSchema,
 });
 

@@ -5,6 +5,7 @@ export const todoSchema = z.object({
   title: z.string(),
   body: z.string(),
   enabled: z.boolean(),
+  userId: z.string(),
   createdAt: z.date(),
 });
 
