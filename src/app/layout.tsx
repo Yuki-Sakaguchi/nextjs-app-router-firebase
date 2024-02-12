@@ -4,10 +4,9 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import { Toaster } from "@/components/ui/toaster";
 import { getTheme } from "@/features/theme/domain/usecase/server";
 import type { Metadata } from "next";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 export const dynamic = "force-dynamic";
@@ -29,11 +28,11 @@ export default async function RootLayout({
             <SideMenu />
           </ResizablePanel>
           <ResizableHandle withHandle />
-          <ResizablePanel>
+          <ResizablePanel defaultSize={80}>
             <main className="flex-1 p-8 h-full">{children}</main>
           </ResizablePanel>
         </ResizablePanelGroup>
-        <ToastContainer />
+        <Toaster />
       </body>
     </html>
   );

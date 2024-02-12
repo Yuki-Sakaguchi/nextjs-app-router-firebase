@@ -4,17 +4,17 @@
     "enabled": true
   },
   "files": {
-    "ignore": ["src/components/ui/*.tsx"]
+    "ignore": ["src/components/ui/*.tsx", "src/components/ui/*.ts"]
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true
     },
-    "ignore": ["src/components/ui/*.tsx"]
+    "ignore": ["src/components/ui/*.tsx", "src/components/ui/*.ts"]
   },
   "formatter": {
     "indentStyle": "space",
-    "ignore": ["src/components/ui/*.tsx"]
+    "ignore": ["src/components/ui/*.tsx", "src/components/ui/*.ts"]
   }
 }

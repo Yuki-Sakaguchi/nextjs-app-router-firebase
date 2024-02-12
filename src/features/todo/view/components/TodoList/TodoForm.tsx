@@ -1,10 +1,10 @@
 "use client";
 
 import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "@/components/ui/use-toast";
 import { Todo } from "@/features/todo/domain/model/Todo";
 import { formatYYYYMMDD } from "@/lib/date";
-import toast from "@/lib/toast";
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { TrashIcon } from "lucide-react";
 
 type Props = {
   todo: Todo;
@@ -18,44 +18,55 @@ export default async function TodoForm({
   removeTodo,
 }: Props) {
   async function handleAction(todo: Todo) {
-    console.log("change", todo);
     try {
       await toggleEnabled(todo);
-      toast.success("タスクの編集に成功しました");
+      toast({
+        title: "Success",
+        description: "タスクの編集に成功しました",
+      });
     } catch (e) {
       if (e instanceof Error) {
-        toast.error(e.message);
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: e.message,
+        });
       }
     }
   }
   async function handleRemove(id: string) {
     try {
       await removeTodo(id);
-      toast.success("タスクの削除に成功しました");
+      toast({
+        title: "Success",
+        description: "タスクの削除に成功しました",
+      });
     } catch (e) {
       if (e instanceof Error) {
-        toast.error(e.message);
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: e.message,
+        });
       }
     }
   }
   return (
-    <li className="border py-2 px-4 rounded-md">
-      <div>
-        <div className="flex items-center gap-4">
-          <Checkbox
-            name="enabled"
-            defaultChecked={todo.enabled}
-            onCheckedChange={async () => handleAction(todo)}
-          />
-          <div className="flex-1">
-            <time className="text-xs">{formatYYYYMMDD(todo.createdAt)}</time>
-            <h3 className="text-xl font-bold">{todo.title}</h3>
-          </div>
-          <div>
-            <button type="button" onClick={() => handleRemove(todo.id)}>
-              <TrashIcon className="h-6 w-6" />
-            </button>
-          </div>
+    <li className="border py-2 px-4 rounded-lg">
+      <div className="flex items-center gap-4">
+        <Checkbox
+          name="enabled"
+          defaultChecked={todo.enabled}
+          onCheckedChange={async () => handleAction(todo)}
+        />
+        <div className="flex-1">
+          <time className="text-xs">{formatYYYYMMDD(todo.createdAt)}</time>
+          <h3 className="text-xl font-bold">{todo.title}</h3>
+        </div>
+        <div>
+          <button type="button" onClick={() => handleRemove(todo.id)}>
+            <TrashIcon className="h-6 w-6 text-gray-400" />
+          </button>
         </div>
       </div>
     </li>
