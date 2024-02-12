@@ -24,9 +24,6 @@ Zod でスキーマとバリデーションを一緒に管理
   - https://zenn.dev/makotoishida/articles/868e195fc42f5e
 - グラフの表示
   - https://zenn.dev/leftletter/articles/cdf3d30b74718c
-- サイドメニューの幅を可変にする
-- TODO一覧をログインしていないと表示できないようにする（今はエラーになる）
-  - ログインを促すページにする
 - fetchのラッパー関数
   - cookie を常に渡し続けるような形にしたい
 
