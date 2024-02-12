@@ -31,7 +31,6 @@ export default async function SideMenu() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Profile</DropdownMenuItem>
                 <DropdownMenuItem>
-                  {/* @ts-expect-error Server Component */}
                   <LogoutButton />
                 </DropdownMenuItem>
               </DropdownMenuContent>

@@ -11,7 +11,6 @@ export default function TodoListPresenter({ todos }: Props) {
     <ul className="flex flex-col gap-4">
       {todos.map((todo) => (
         <>
-          {/* @ts-expect-error Server Component */}
           <TodoForm
             todo={todo}
             key={todo.id}

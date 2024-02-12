@@ -26,7 +26,6 @@ export default async function RootLayout({
       <body className="h-screen">
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel defaultSize={20} maxSize={30} minSize={5}>
-            {/* @ts-expect-error Server Component */}
             <SideMenu />
           </ResizablePanel>
           <ResizableHandle withHandle />
