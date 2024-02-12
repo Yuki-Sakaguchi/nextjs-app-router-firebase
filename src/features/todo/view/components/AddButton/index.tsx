@@ -36,7 +36,7 @@ function SubmitButton() {
 
 export default function AddButton({ addTodo }: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  useHotkeys("q", () => setIsOpen(true));
+  useHotkeys("q", () => setTimeout(() => setIsOpen(true), 100));
 
   async function handleAction(formData: FormData) {
     try {
