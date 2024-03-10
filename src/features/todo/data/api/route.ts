@@ -28,7 +28,9 @@ export async function GET(request: NextRequest) {
       id: doc.id,
     };
   });
-  return NextResponse.json(data);
+  return NextResponse.json(
+    data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1)),
+  );
 }
 
 export async function POST(request: NextRequest) {
