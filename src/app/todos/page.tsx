@@ -4,7 +4,7 @@ import AddButton from "@/features/todo/view/components/AddButton";
 
 export default async function Todos() {
   return (
-    <div>
+    <div className="p-8">
       <div className="flex items-center gap-4">
         <h1 className="text-4x font-bold">TODO一覧</h1>
         <AddButton addTodo={addTodo} />

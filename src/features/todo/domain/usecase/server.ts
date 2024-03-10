@@ -3,6 +3,25 @@ import { isEmptyObject } from "@/utils/check";
 import { getApiBase } from "@/utils/fetch";
 import { cookies } from "next/headers";
 
+export async function getTodo(id: string): Promise<Todo | null> {
+  const apiBase = getApiBase();
+  const session = cookies().get("session")?.value || "";
+  const response = await fetch(`${apiBase}/api/todo/${id}`, {
+    cache: "no-store",
+    headers: {
+      Cookie: `session=${session}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error("error");
+  }
+  const data = await response.json();
+  if (isEmptyObject(data)) {
+    return null;
+  }
+  return data as Todo;
+}
+
 export async function getTodos(): Promise<Todo[]> {
   const apiBase = getApiBase();
   const session = cookies().get("session")?.value || "";

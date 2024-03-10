@@ -29,7 +29,7 @@ export default async function RootLayout({
           </ResizablePanel>
           <ResizableHandle withHandle />
           <ResizablePanel defaultSize={80}>
-            <main className="flex-1 p-8 h-full">{children}</main>
+            <main className="flex-1 h-full">{children}</main>
           </ResizablePanel>
         </ResizablePanelGroup>
         <Toaster />
