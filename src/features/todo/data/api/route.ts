@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { getUser } from "@/features/user/data/api/route";
+import { getUser, getUserUid } from "@/features/user/data/api/route";
 import { db } from "@/lib/firebase/server";
 import { Todo } from "../../domain/model/Todo";
 import { todoRawConverter } from "../datasource/TodoRaw";
@@ -8,14 +8,14 @@ import { todoRawConverter } from "../datasource/TodoRaw";
 const COLLECTION_NAME = "todo";
 
 export async function GET(request: NextRequest) {
-  const user = await getUser();
-  if (!user) {
+  const uid = await getUserUid();
+  if (!uid) {
     throw new Error("ユーザーが存在しません");
   }
   const snapshot = await db
     .collection(COLLECTION_NAME)
     .withConverter(todoRawConverter)
-    .where("userId", "==", user.uid)
+    .where("userId", "==", uid)
     .get();
   if (snapshot.empty) {
     return NextResponse.json({});
@@ -34,8 +34,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const user = await getUser();
-  if (!user) {
+  const uid = await getUserUid();
+  if (!uid) {
     throw new Error("ユーザーが存在しません");
   }
   const insertData = await request.json();
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     body: insertData.body,
     createdAt: new Date(),
     enabled: false,
-    userId: user.uid,
+    userId: uid,
   };
   await db
     .collection(COLLECTION_NAME)
@@ -54,8 +54,8 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PATCH(request: NextRequest) {
-  const user = await getUser();
-  if (!user) {
+  const uid = await getUserUid();
+  if (!uid) {
     throw new Error("ユーザーが存在しません");
   }
   const updateData: Todo = await request.json();
@@ -65,7 +65,7 @@ export async function PATCH(request: NextRequest) {
     body: updateData.body,
     createdAt: new Date(updateData.createdAt),
     enabled: updateData.enabled,
-    userId: user.uid,
+    userId: uid,
   };
   await db
     .collection(COLLECTION_NAME)
@@ -76,8 +76,8 @@ export async function PATCH(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  const user = await getUser();
-  if (!user) {
+  const uid = await getUserUid();
+  if (!uid) {
     throw new Error("ユーザーが存在しません");
   }
   const deleteData = await request.json();
@@ -92,7 +92,7 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ message: "failure" });
   }
 
-  if (doc.data()?.userId !== user.uid) {
+  if (doc.data()?.userId !== uid) {
     return NextResponse.json({ message: "failure" });
   }
 

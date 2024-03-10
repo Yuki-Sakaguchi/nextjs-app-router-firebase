@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { getUser } from "@/features/user/data/api/route";
+import { getUser, getUserUid } from "@/features/user/data/api/route";
 import { db } from "@/lib/firebase/server";
 import { Todo } from "../../domain/model/Todo";
 import { todoRawConverter } from "../datasource/TodoRaw";
@@ -11,8 +11,8 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } },
 ) {
-  const user = await getUser();
-  if (!user) {
+  const uid = await getUserUid();
+  if (!uid) {
     throw new Error("ユーザーが存在しません");
   }
   const id = params.id;
