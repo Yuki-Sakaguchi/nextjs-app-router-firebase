@@ -1,3 +1,4 @@
+import ProgressBar from "@/components/layouts/ProgressBar";
 import SideMenu from "@/components/layouts/SideMenu";
 import {
   ResizableHandle,
@@ -33,6 +34,7 @@ export default async function RootLayout({
           </ResizablePanel>
         </ResizablePanelGroup>
         <Toaster />
+        <ProgressBar />
       </body>
     </html>
   );
