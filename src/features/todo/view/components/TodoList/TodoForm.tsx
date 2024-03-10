@@ -35,19 +35,21 @@ export default async function TodoForm({
     }
   }
   async function handleRemove(id: string) {
-    try {
-      await removeTodo(id);
-      toast({
-        title: "Success",
-        description: "タスクの削除に成功しました",
-      });
-    } catch (e) {
-      if (e instanceof Error) {
+    if (confirm("本当に削除してもよろしいでしょうか？")) {
+      try {
+        await removeTodo(id);
         toast({
-          variant: "destructive",
-          title: "Error",
-          description: e.message,
+          title: "Success",
+          description: "タスクの削除に成功しました",
         });
+      } catch (e) {
+        if (e instanceof Error) {
+          toast({
+            variant: "destructive",
+            title: "Error",
+            description: e.message,
+          });
+        }
       }
     }
   }
