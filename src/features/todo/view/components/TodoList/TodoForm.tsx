@@ -3,9 +3,11 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/components/ui/use-toast";
 import { Todo } from "@/features/todo/domain/model/Todo";
+import { getTodos } from "@/features/todo/domain/usecase/server";
 import { formatYYYYMMDD } from "@/lib/date";
 import { TrashIcon } from "lucide-react";
 import Link from "next/link";
+import { useEffect } from "react";
 
 type Props = {
   todo: Todo;

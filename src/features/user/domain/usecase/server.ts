@@ -8,8 +8,9 @@ import { User } from "../model/User";
 customInitApp();
 
 export async function getUser() {
-  const apiBase = getApiBase();
+  const apiBase = await getApiBase();
   const session = cookies().get("session")?.value || "";
+  console.log("getUser", apiBase);
   const response = await fetch(`${apiBase}/api/user`, {
     cache: "no-cache",
     headers: {
